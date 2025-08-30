@@ -21,7 +21,7 @@ func (e *Employee) PrintInfo() {
 	fmt.Println("employee info: name->", e.name, "age->", e.age, "company->", e.company)
 }
 
-func main() {
+func main17() {
 	employee := Employee{}
 	employee.setPrintInfo("张三", 30, "alibaba")
 	employee.PrintInfo()
