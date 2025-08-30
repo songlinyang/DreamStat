@@ -14,7 +14,7 @@ func yushu(i int) int {
 	return i % 2
 }
 
-func main() {
+func main15() {
 	// var wg sync.WaitGroup
 	var wg sync.WaitGroup
 	wg.Add(2)
