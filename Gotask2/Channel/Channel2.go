@@ -1,3 +1,4 @@
+// Channel题目1
 package main
 
 import (
@@ -21,7 +22,7 @@ func sendChannel2(ch chan<- int) {
 	close(ch)
 }
 
-func main222() {
+func main() {
 	// 创建一个channel ,
 	ch := make(chan int, 100)
 	// 启动一个协程，发送数据到channel

@@ -1,3 +1,4 @@
+// 面向对象 题目2
 package main
 
 import "fmt"

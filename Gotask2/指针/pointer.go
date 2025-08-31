@@ -1,3 +1,4 @@
+// 指针题目1
 package main
 
 import "fmt"

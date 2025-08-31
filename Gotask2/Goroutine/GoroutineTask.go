@@ -1,3 +1,4 @@
+// Goroutine题目1
 package main
 
 import (
@@ -14,16 +15,17 @@ func yushu(i int) int {
 	return i % 2
 }
 
-func main15() {
+func main() {
 	// var wg sync.WaitGroup
 	var wg sync.WaitGroup
 	wg.Add(2)
 	go func() {
 		defer wg.Done()
 		for i := 0; i < 10; i++ {
+			number := i + 1
 			time.Sleep(100 * time.Millisecond)
-			if yushu(i) == 0 {
-				fmt.Println("goroutine协程1->偶数：", i)
+			if yushu(number) == 0 {
+				fmt.Println("goroutine协程1->偶数：", number)
 			}
 		}
 	}()
@@ -31,9 +33,10 @@ func main15() {
 	go func() {
 		defer wg.Done()
 		for i := 0; i < 10; i++ {
+			number := i + 1
 			time.Sleep(100 * time.Millisecond)
-			if yushu(i) != 0 {
-				fmt.Println("goroutine协程2->奇数: ", i)
+			if yushu(number) != 0 {
+				fmt.Println("goroutine协程2->奇数: ", number)
 			}
 		}
 	}()

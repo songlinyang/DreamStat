@@ -1,3 +1,4 @@
+// 面向对象 题目1
 package main
 
 type Shape interface {

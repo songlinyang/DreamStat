@@ -1,3 +1,4 @@
+// 锁机制 题目2
 package main
 
 import (
