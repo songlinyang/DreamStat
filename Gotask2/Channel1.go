@@ -8,9 +8,13 @@ import (
 // 接收channel数据 ch <- chan type
 func receiveChannel(chOutput <-chan int, chInput chan<- int) {
 	for {
-		v := <-chOutput
+		v, ok := <-chOutput
+		if !ok {
+			break // channel was closed and drained
+		}
 		chInput <- v
 	}
+	close(chInput)
 }
 
 // 发送channel数据 ch chan <- type
@@ -22,7 +26,7 @@ func sendChannel(ch chan<- int) {
 	close(ch)
 }
 
-func main() {
+func main333() {
 	// 创建一个channel ,无缓冲
 	ch1 := make(chan int)
 	ch2 := make(chan int)
