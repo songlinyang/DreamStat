@@ -1,48 +1,65 @@
 package main
 
-//import (
-//	"fmt"
-//	"time"
+import (
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+)
+
+// // 创建记录
 //
-//	"gorm.io/driver/sqlite"
-//	"gorm.io/gorm"
-//)
-//
-//// 创建记录
-//type User struct {
-//	gorm.Model
-//	ID         uint
-//	Name       string
-//	Age        int
-//	Birthday   time.Time
-//	CreditCard CreditCard
-//	Company    Company
-//	Email      string `gorm:"unique"`
-//}
-//type Email struct {
-//	gorm.Model
-//	UserID  uint
-//	address string
-//}
-//type Company struct {
-//	gorm.Model
-//	UserID uint
-//	Name   string
-//}
-//
-//type CreditCard struct {
-//	gorm.Model
-//	Number string
-//	UserID uint
-//}
-//
-//func main() {
-//	db, err := gorm.Open(sqlite.Open("identifier.sqlite"), &gorm.Config{})
-//	if err != nil {
-//		panic(err)
+//	type User struct {
+//		gorm.Model
+//		ID         uint
+//		Name       string
+//		Age        int
+//		Birthday   time.Time
+//		CreditCard CreditCard
+//		Company    Company
+//		Email      string `gorm:"unique"`
 //	}
-//	//创建 表
-//	db.AutoMigrate(&User{})
+//
+//	type Email struct {
+//		gorm.Model
+//		UserID  uint
+//		address string
+//	}
+//
+//	type Company struct {
+//		gorm.Model
+//		UserID uint
+//		Name   string
+//	}
+//
+//	type CreditCard struct {
+//		gorm.Model
+//		Number string
+//		UserID uint
+//	}
+type Employees struct {
+	gorm.Model
+	ID         uint
+	Name       string
+	Department string
+	Salary     float64
+}
+type Books struct {
+	gorm.Model
+	ID     uint
+	Title  string
+	Author string
+	Price  uint32
+}
+
+func main() {
+	db, err := gorm.Open(sqlite.Open("identifier.sqlite"), &gorm.Config{})
+	if err != nil {
+		panic(err)
+	}
+	//创建 表
+	db.AutoMigrate(&Employees{})
+	db.AutoMigrate(&Books{})
+}
+
 //	db.AutoMigrate(&CreditCard{})
 //	db.AutoMigrate(&Email{})
 //	//user := User{Name: "Jinzhu", Age: 18, Birthday: time.Now()}
