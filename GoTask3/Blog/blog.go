@@ -9,19 +9,21 @@ import (
 
 type User struct {
 	gorm.Model
-	ID       uint
-	UserName string
-	Password string
-	Email    string
-	Posts    []Post
+	ID         uint
+	UserName   string
+	Password   string
+	Email      string
+	PostsCount int
+	Posts      []Post
 }
 type Post struct {
 	gorm.Model
-	ID       uint
-	Title    string
-	Body     string
-	UserID   uint
-	Comments []Comments
+	ID            uint
+	Title         string
+	Body          string
+	UserID        uint
+	CommentStatue string
+	Comments      []Comments
 }
 type Comments struct {
 	gorm.Model
@@ -110,4 +112,64 @@ func main() {
 		panic(err)
 	}
 	fmt.Println("评论数量最多的文章ID是：", c.PostID)
+
+	//题目3：钩子函数
+	//3.1为 Post 模型添加一个钩子函数，在文章创建时自动更新用户的文章数量统计字段。
+	if err := db.Select("user_id", "title", "body").Create(&Post{UserID: 1, Title: "你好", Body: "你好"}).Error; err != nil {
+		panic(err)
+	}
+	//3.2为 Comment 模型添加一个钩子函数，在评论删除时检查文章的评论数量，如果评论数量为 0，则更新文章的评论状态为 "无评论"
+}
+
+// 创建钩子
+// 开始事务
+func (p *Post) BeforeSave(tx *gorm.DB) error {
+	fmt.Println("BeforeSave")
+	//if u.Name != "Jinzhu" {
+	//	return errors.New("invalid role")
+	//}
+	return nil
+}
+
+// BeforeSave, BeforeCreate, AfterSave, AfterCreate
+func (p *Post) BeforeCreate(tx *gorm.DB) (err error) {
+	fmt.Println("BeforeCreate")
+	return nil
+}
+
+func (p *Post) AfterCreate(tx *gorm.DB) (err error) {
+	fmt.Println("AfterCreate")
+	//if u.Name != "Jinzhu" {
+	//	return errors.New("invalid role")
+	//}
+	return nil
+}
+
+// 关联前的 save
+// 插入记录至 db
+// 关联后的 save
+type PostsCountResult struct {
+	PostsCount int `gorm:"column:posts_count"`
+}
+
+func (p *Post) AfterSave(tx *gorm.DB) (err error) {
+	fmt.Println("AfterSave")
+	fmt.Println("BeforeCreate")
+	//先查出有多少次
+	var user User
+	var postsCountResult PostsCountResult
+	if err := tx.Select("posts_count").Where("id=?", p.UserID).First(&user).Scan(&postsCountResult).Error; err != nil {
+		panic(err)
+	}
+	fmt.Println("当前用户文章数：", postsCountResult.PostsCount)
+	postsCountResult.PostsCount = postsCountResult.PostsCount + 1
+	if err := tx.Debug().Model(&user).Where("id=?", p.UserID).Update("posts_count", postsCountResult.PostsCount).Error; err != nil {
+		panic(err)
+	}
+	fmt.Println("user.PostsCount累计：", postsCountResult.PostsCount)
+	fmt.Println("hhhh=>", user)
+	//if u.Name != "Jinzhu" {
+	//	return errors.New("invalid role")
+	//}
+	return err
 }
