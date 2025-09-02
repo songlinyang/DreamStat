@@ -2,20 +2,17 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
 type Student struct {
-	ID        uint `gorm:"primarykey"`
-	Name      string
-	Age       uint
-	Grade     string
-	CreatedAt time.Time      // Automatically managed by GORM for creation time
-	UpdatedAt time.Time      // Automatically managed by GORM for update time
-	DeleteAt  gorm.DeletedAt `gorm:"index"`
+	gorm.Model
+	ID    uint `gorm:"primarykey"`
+	Name  string
+	Age   uint
+	Grade string
 }
 type StudentResult struct {
 	ID    uint `gorm:"primarykey"`
@@ -24,7 +21,7 @@ type StudentResult struct {
 	Grade string
 }
 
-func main() {
+func main1111() {
 	//1. 链接数据库
 	db, err := gorm.Open(sqlite.Open("identifier.sqlite"), &gorm.Config{})
 	if err != nil {
