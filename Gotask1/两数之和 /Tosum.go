@@ -3,6 +3,8 @@
  */
 package main
 
+import "fmt"
+
 func twoSum(nums []int, target int) []int {
 	if len(nums) == 0 {
 		return []int{}
@@ -26,7 +28,7 @@ func twoSum(nums []int, target int) []int {
 
 }
 
-// func main() {
-// 	aa := twoSum([]int{0, 4, 3, 0}, 0)
-// 	fmt.Println(aa)
-// }
+func main() {
+	aa := twoSum([]int{0, 4, 3, 0}, 0)
+	fmt.Println(aa)
+}

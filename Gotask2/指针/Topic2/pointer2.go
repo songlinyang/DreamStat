@@ -1,5 +1,5 @@
 // 指针题目2
-package main
+package mian
 
 import "fmt"
 

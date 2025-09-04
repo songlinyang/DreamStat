@@ -1,4 +1,4 @@
-// 锁机制 题目2
+// 锁机制 Topic2
 package main
 
 import (

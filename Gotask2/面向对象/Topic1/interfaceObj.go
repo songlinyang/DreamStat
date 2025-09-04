@@ -1,4 +1,4 @@
-// 面向对象 题目1
+// 面向对象 Topic1
 package main
 
 type Shape interface {

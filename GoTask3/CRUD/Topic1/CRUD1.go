@@ -21,7 +21,7 @@ type StudentResult struct {
 	Grade string
 }
 
-func main1111() {
+func main() {
 	//1. 链接数据库
 	db, err := gorm.Open(sqlite.Open("identifier.sqlite"), &gorm.Config{})
 	if err != nil {

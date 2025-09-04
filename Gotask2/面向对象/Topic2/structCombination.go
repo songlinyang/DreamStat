@@ -1,4 +1,4 @@
-// 面向对象 题目2
+// 面向对象 Topic2
 package main
 
 import "fmt"

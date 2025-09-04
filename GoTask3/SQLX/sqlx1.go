@@ -14,7 +14,7 @@ type EmployeesResult struct {
 	Salary     float64
 }
 
-// 题目1：使用SQL扩展库进行查询
+// Topic1：使用SQL扩展库进行查询
 func main6() {
 	var (
 		db  *sqlx.DB

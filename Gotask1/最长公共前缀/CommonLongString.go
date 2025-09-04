@@ -32,8 +32,8 @@ func longestCommonPrefix(strs []string) string {
 	return prefix
 }
 
-// func main() {
-// 	strss := []string{"flower", "flow", "flight"}
-// 	prefixStr := longestCommonPrefix(strss)
-// 	fmt.Println(prefixStr)
-// }
+func main() {
+	strss := []string{"flower", "flow", "flight"}
+	prefixStr := longestCommonPrefix(strss)
+	fmt.Println(prefixStr)
+}

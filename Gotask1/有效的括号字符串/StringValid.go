@@ -3,6 +3,8 @@
  */
 package main
 
+import "fmt"
+
 ///
 // 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
 
@@ -75,9 +77,9 @@ func isValid(s string) bool {
 }
 
 // /
-// func main() {
-// 	//'('，')'，'{'，'}'，'['，']'
-// 	var inputString string = "{[()]}"
-// 	result := isValid(inputString)
-// 	fmt.Println(result)
-// }
+func main() {
+	//'('，')'，'{'，'}'，'['，']'
+	var inputString string = "{[()]}"
+	result := isValid(inputString)
+	fmt.Println(result)
+}
